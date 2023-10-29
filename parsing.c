@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:06:44 by user              #+#    #+#             */
-/*   Updated: 2023/10/26 14:01:22 by user             ###   ########.fr       */
+/*   Updated: 2023/10/29 14:08:10 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,17 @@ void	read_file(char *map_name, t_game **game)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (line[0] == 'N' && line[1] == 'O'
-			&& (line[2] == ' ' || line[2] == '\t'))
-			(*game)->tex.no = get_texture(line + 2);
-		else if (line[0] == 'S' && line[1] == 'O'
-			&& (line[2] == ' ' || line[2] == '\t'))
-			(*game)->tex.so = get_texture(line + 2);
-		else if (line[0] == 'W' && line[1] == 'E'
-			&& (line[2] == ' ' || line[2] == '\t'))
-			(*game)->tex.we = get_texture(line + 2);
-		else if (line[0] == 'E' && line[1] == 'A'
-			&& (line[2] == ' ' || line[2] == '\t'))
-			(*game)->tex.ea = get_texture(line + 2);
-		else if (line[0] == 'F'
-			&& (line[1] == ' ' || line[1] == '\t'))
-			(*game)->floor = get_color(line + 1);
-		else if (line[0] == 'C'
-			&& (line[1] == ' ' || line[1] == '\t'))
-			(*game)->ceiling = get_color(line + 1);
-		// else if (line[0] != '\n')
-		// 	printf("map\n");
+		set_texture(line, "NO", &(*game)->tex.no, &(*game)->exist.is_no);
+		set_texture(line, "SO", &(*game)->tex.so, &(*game)->exist.is_so);
+		set_texture(line, "WE", &(*game)->tex.we, &(*game)->exist.is_we);
+		set_texture(line, "EA", &(*game)->tex.ea, &(*game)->exist.is_ea);
+		set_color(line, "F", &(*game)->floor, &(*game)->exist.is_f);
+		set_color(line, "C", &(*game)->ceiling, &(*game)->exist.is_c);
+		set_map(*game, line);
 		free(line);
 	}
+	if (!check_exist(*game))
+		exit(ft_perror("duplicate in config\n"));
 	free(line);
 	close(fd);
 }

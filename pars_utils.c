@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 13:22:48 by user              #+#    #+#             */
-/*   Updated: 2023/10/26 13:23:39 by user             ###   ########.fr       */
+/*   Created: 2023/10/29 13:30:12 by apiloian          #+#    #+#             */
+/*   Updated: 2023/10/29 13:44:44 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,13 @@ void	check_format(char *to_check, char f1, char f2, char f3)
 		}
 	}
 	exit(ft_perror("invalid format\n"));
+}
+
+int	check_exist(t_game *game)
+{
+	if (game->exist.is_no > 1 || game->exist.is_so > 1 || game->exist.is_we > 1
+		|| game->exist.is_ea > 1 || game->exist.is_f > 1 || game->exist.is_c > 1)
+		return (0);
+	return (1);
+		
 }

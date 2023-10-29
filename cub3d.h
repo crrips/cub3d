@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/26 14:01:41 by user             ###   ########.fr       */
+/*   Updated: 2023/10/29 14:07:12 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,23 @@ typedef struct s_map
 	int		y;
 }	t_map;
 
+typedef struct s_exist
+{
+	int	is_no;
+	int	is_so;
+	int	is_we;
+	int	is_ea;
+	int	is_f;
+	int	is_c;
+}	t_exist;
+
 typedef struct s_game
 {
 	t_texture		tex;
 	t_color			floor;
 	t_color			ceiling;
 	t_map			map;
+	t_exist			exist;
 }	t_game;
 
 // PARSING
@@ -64,7 +75,13 @@ char	*get_next_line(int fd);
 char	*get_texture(char *line);
 t_color	get_color(char *line);
 
+// SETTERS
+void	set_texture(char *line, char *txt, char **to_set, int *to_increment);
+void	set_color(char *line, char *txt, t_color *to_set, int *to_increment);
+void	set_map(t_game *game, char *line);
+
 // PARS UTILS
 void	check_format(char *to_check, char f1, char f2, char f3);
+int		check_exist(t_game *game);
 
 #endif
