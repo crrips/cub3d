@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:43:40 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/29 14:16:35 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/10/29 18:17:00 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ void	set_color(char *line, char *txt, t_color *to_set, int *to_increment)
 	}
 }
 
-void	set_map(t_game *game, char *line)
+int	set_map(t_game *game, char *line)
 {
 	static int	len = 0;
 	
 	(void)line;
-	if (check_exist(game) && line[0] != '\n')
+	if (check_exist(game) && (line[0] == '1' 
+		|| line[0] == ' ' || line[0] == '\t'))
 		len++;
-	printf("%d\n", len);
+	return (len);
 }

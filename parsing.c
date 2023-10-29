@@ -3,21 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:06:44 by user              #+#    #+#             */
-/*   Updated: 2023/10/29 14:08:10 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/10/29 21:29:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	read_file(char *map_name, t_game **game)
+void	create_map(char *filename, t_game **game)
+{
+	(void)filename;
+	int		fd;
+	// char	*line;
+	
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		exit(ft_perror("invalid file\n"));
+	if ((*game)->map.size < 3)
+		exit(ft_perror("invalid map\n"));
+	(*game)->map.map = malloc((*game)->map.size * sizeof(char *));	
+}
+
+void	read_file(char *filename, t_game **game)
 {
 	int		fd;
 	char	*line;
 
-	fd = open(map_name, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		exit(ft_perror("invalid file\n"));
 	while (1)
@@ -31,7 +45,7 @@ void	read_file(char *map_name, t_game **game)
 		set_texture(line, "EA", &(*game)->tex.ea, &(*game)->exist.is_ea);
 		set_color(line, "F", &(*game)->floor, &(*game)->exist.is_f);
 		set_color(line, "C", &(*game)->ceiling, &(*game)->exist.is_c);
-		set_map(*game, line);
+		(*game)->map.size = set_map(*game, line);
 		free(line);
 	}
 	if (!check_exist(*game))
@@ -46,6 +60,7 @@ void	parsing(int argc, char **argv, t_game **game)
 	{
 		check_format(argv[1], 'c', 'u', 'b');
 		read_file(argv[1], game);
+		create_map(argv[1], game);
 	}
 	else
 		exit(ft_perror("invalid arguments\n"));

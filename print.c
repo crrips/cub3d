@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/29 13:30:05 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/10/29 18:17:45 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	print_data(t_game **game)
 	printf("%d %d %d\n", (*game)->floor.r, (*game)->floor.g, (*game)->floor.b);
 	printf("ceiling color\n");
 	printf("%d %d %d\n", (*game)->ceiling.r, (*game)->ceiling.g, (*game)->ceiling.b);
-	printf("map %d\n", check_exist(*game));
+	printf("map %d\n", (*game)->map.size);
 }

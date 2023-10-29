@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/29 14:07:12 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/10/29 18:16:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_color
 
 typedef struct s_map
 {
+	int		size;
 	char	**map;
 	int		x;
 	int		y;
@@ -78,7 +79,7 @@ t_color	get_color(char *line);
 // SETTERS
 void	set_texture(char *line, char *txt, char **to_set, int *to_increment);
 void	set_color(char *line, char *txt, t_color *to_set, int *to_increment);
-void	set_map(t_game *game, char *line);
+int		set_map(t_game *game, char *line);
 
 // PARS UTILS
 void	check_format(char *to_check, char f1, char f2, char f3);
