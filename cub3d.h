@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/29 18:16:32 by user             ###   ########.fr       */
+/*   Updated: 2023/10/30 11:48:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	parsing(int argc, char **argv, t_game **game);
 // PRINT
 int		ft_perror(char *s);
 void	print_data(t_game **game);
+void	print2d(char **map);
 
 // FILE
 char	*get_next_line(int fd);
@@ -79,7 +80,7 @@ t_color	get_color(char *line);
 // SETTERS
 void	set_texture(char *line, char *txt, char **to_set, int *to_increment);
 void	set_color(char *line, char *txt, t_color *to_set, int *to_increment);
-int		set_map(t_game *game, char *line);
+int		set_mapsize(t_game *game, char *line);
 
 // PARS UTILS
 void	check_format(char *to_check, char f1, char f2, char f3);

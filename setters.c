@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:43:40 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/29 18:17:00 by user             ###   ########.fr       */
+/*   Updated: 2023/10/30 12:27:40 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ void	set_color(char *line, char *txt, t_color *to_set, int *to_increment)
 	}
 }
 
-int	set_map(t_game *game, char *line)
+int	set_mapsize(t_game *game, char *line)
 {
 	static int	len = 0;
+	int			j;
 	
-	(void)line;
-	if (check_exist(game) && (line[0] == '1' 
-		|| line[0] == ' ' || line[0] == '\t'))
+	j = 0;
+	while (line[j] == ' ' || line[j] == '\t')
+			j++;
+	if (check_exist(game) && (line[j] == '1'))
 		len++;
 	return (len);
 }
