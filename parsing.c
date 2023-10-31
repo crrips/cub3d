@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:06:44 by user              #+#    #+#             */
-/*   Updated: 2023/10/30 12:39:30 by user             ###   ########.fr       */
+/*   Updated: 2023/10/31 21:09:43 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	create_config(char *filename, t_game **game)
 		free(line);
 	}
 	if (!check_exist(*game))
-		exit(ft_perror("duplicate in config\n"));
+		exit(ft_perror("invalid config\n"));
 	free(line);
 	close(fd);
 }
