@@ -1,6 +1,7 @@
 NAME	=	cub3D
 
 SRC		=	main.c parsing.c print.c getters.c setters.c pars_utils.c\
+			config.c map.c\
 			get_next_line.c get_next_line_utils.c
 	
 OBJ_DIR	=	obj

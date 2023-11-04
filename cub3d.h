@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/30 11:48:17 by user             ###   ########.fr       */
+/*   Updated: 2023/11/04 19:46:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,10 @@ int		set_mapsize(t_game *game, char *line);
 // PARS UTILS
 void	check_format(char *to_check, char f1, char f2, char f3);
 int		check_exist(t_game *game);
+void	check_all_numbers(t_color f, t_color c);
+
+// CREATE
+void	create_map(char *filename, t_game **game);
+void	create_config(char *filename, t_game **game);
 
 #endif
