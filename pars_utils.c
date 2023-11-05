@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:12 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/31 21:09:17 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:44:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ void	check_format(char *to_check, char f1, char f2, char f3)
 	int	last;
 
 	last = ft_strlen(to_check) - 1;
-	if (last > 3 && to_check[last] == f3)
+	if (last > 3 && (to_check[last - 2] == 'c'
+		|| to_check[last -2] == 'x' || to_check[last - 2] == 'X')
+		&& ft_tolower(to_check[last]) == f3)
 	{
 		last--;
-		if (to_check[last] == f2)
+		if (ft_tolower(to_check[last]) == f2)
 		{
 			last--;
-			if (to_check[last] == f1)
+			if (ft_tolower(to_check[last]) == f1)
 			{
 				last--;
-				if (to_check[last] == '.')
+				if (ft_tolower(to_check[last]) == '.')
 					return ;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/04 19:46:26 by user             ###   ########.fr       */
+/*   Updated: 2023/11/05 20:47:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,9 @@ void	check_all_numbers(t_color f, t_color c);
 // CREATE
 void	create_map(char *filename, t_game **game);
 void	create_config(char *filename, t_game **game);
+
+// MATH
+void	increment(int	*i);
+void	decrement(int	*i);
 
 #endif

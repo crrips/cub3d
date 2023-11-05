@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:43:29 by user              #+#    #+#             */
-/*   Updated: 2023/11/04 20:16:14 by user             ###   ########.fr       */
+/*   Updated: 2023/11/05 21:03:01 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,30 @@ void	check_wall_last(char *line)
 		exit(ft_perror("invalid map\n"));
 }
 
-void	check_no_wall(char **map)
+void	check_no_wall(char **map, int pos, void (*operator)(int *i))
 {
 	int	i;
 	int	j;
-
-	i = 0;
+	
+	i = pos;
 	j = 0;
-	while (map[i])
+	while (map[i][j])
 	{
 		while (map[i][j] == ' ' || map[i][j] == '\t')
 			j++;
-		i++;
+		while (map[i][j] == '1')
+			j++;
+		if (map[i][j] == '\n' || map[i][j] == '\0')
+			break ;
+		while (map[i][j] == ' ' || map[i][j] == '\t')
+			operator(&i);
+		if (map[i][j] != '1')
+			exit(ft_perror("invalid map\n"));
+		else
+		{
+			i = pos;
+			j++;
+		}
 	}
 }
 
@@ -79,4 +91,6 @@ void	create_map(char *filename, t_game **game)
 	(*game)->map.map[i] = NULL;
 	free(line);
 	close(fd);
+	check_no_wall((*game)->map.map, 0, increment);
+	check_no_wall((*game)->map.map, (*game)->map.size - 1, decrement);
 }
