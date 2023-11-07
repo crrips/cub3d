@@ -6,11 +6,29 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:43:29 by user              #+#    #+#             */
-/*   Updated: 2023/11/05 21:27:14 by user             ###   ########.fr       */
+/*   Updated: 2023/11/07 14:58:27 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	after_map(char *line, char **map)
+{
+	static char	*save_line;
+
+	if (*map && **map)
+	{
+		while (*line == ' ' || *line == '\t')
+			line++;
+		if (*line == '\n')
+		{
+			save_line = ft_strdup(line);
+			return ;
+		}
+		if (*line != '\n' && save_line && *save_line == '\n')
+			exit(ft_perror("invalid map\n"));	
+	}
+}
 
 void	create_map(char *filename, t_game **game)
 {
@@ -34,6 +52,7 @@ void	create_map(char *filename, t_game **game)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		after_map(line, (*game)->map.map);
 		while (line[j] == ' ' || line[j] == '\t')
 			j++;
 		if (line[j] == 'N' || line[j] == 'S' 
