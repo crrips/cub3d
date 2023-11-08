@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:43:40 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/30 12:27:40 by user             ###   ########.fr       */
+/*   Updated: 2023/11/08 11:17:28 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	set_mapsize(t_game *game, char *line)
 {
 	static int	len = 0;
 	int			j;
-	
+
 	j = 0;
 	while (line[j] == ' ' || line[j] == '\t')
 			j++;

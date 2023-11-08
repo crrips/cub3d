@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/05 21:13:44 by user             ###   ########.fr       */
+/*   Updated: 2023/11/08 10:34:57 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,14 @@ void	create_map(char *filename, t_game **game);
 void	create_config(char *filename, t_game **game);
 
 // MAP UTILS
-void	check_no_wall(char **map, int pos, void (*operator)(int *i));
+void	check_no_wall(char **map, int pos,
+			void (*operator)(int *i, char op), char op);
 void	check_wall_last(char *line);
+void	identify_char(char **line, int *i, int *c, t_game **game);
+void	after_map(char *line, char **map);
+void	check_map(t_game **game);
 
 // MATH
-void	increment(int	*i);
-void	decrement(int	*i);
+void	operator(int *i, char op);
 
 #endif
