@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/30 11:55:11 by user             ###   ########.fr       */
+/*   Updated: 2023/11/09 13:20:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	print2d(char **map)
 	i = 0;
 	while (map[i])
 	{
-		printf("%s\n", map[i]);
+		printf("%s", map[i]);
 		i++;
 	}
+	printf("\n");
 }
 
 void	print_data(t_game **game)
