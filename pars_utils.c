@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:12 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/08 11:17:13 by user             ###   ########.fr       */
+/*   Updated: 2023/11/10 14:37:09 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,20 @@ int	check_exist(t_game *game)
 		|| game->exist.is_f != 1 || game->exist.is_c != 1)
 		return (0);
 	return (1);
+}
+
+int	strlen2d(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+void	while_char(char *line, char skip, int *i)
+{
+	while (line[*i] == skip)
+		(*i)++;
 }

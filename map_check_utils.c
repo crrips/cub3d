@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:44:58 by user              #+#    #+#             */
-/*   Updated: 2023/11/09 19:40:03 by user             ###   ########.fr       */
+/*   Updated: 2023/11/10 14:37:49 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void	check_obrez(char *line, char *pre, char *after)
 {
 	size_t	i;
 	size_t	prelen;
+	size_t	aftlen;
 
 	i = 0;
-	prelen = ft_strlen(pre) - 1;
 	if (!line || !pre || !after)
 		return ;
+	prelen = ft_strlen(pre) - 1;
+	aftlen = ft_strlen(after) - 1;
 	while (line[i] != '\n')
 	{
 		if (line[i] == ' ')
@@ -36,20 +38,11 @@ void	check_obrez(char *line, char *pre, char *after)
 			i++;
 			continue ;
 		}
-		if (line[i] != '1' && (prelen < i || pre[i] == ' ' || after[i] == ' '))
+		if (line[i] != '1' && (prelen <= i || aftlen <= i
+				|| pre[i] == ' ' || after[i] == ' '))
 			exit(ft_perror("invalid map\n"));
 		i++;
 	}
-}
-
-int	strlen2d(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
 }
 
 void	check_down(char **map, int i, int j)
@@ -63,8 +56,7 @@ void	check_down(char **map, int i, int j)
 		i++;
 	if (map[i] && map[i][j] != '1')
 		exit(ft_perror("invalid map\n"));
-	if (i == size)
-		i = 1;
+	i = 1;
 	while (i < size)
 	{
 		check_obrez(map[i], map[i - 1], map[i + 1]);
@@ -91,7 +83,7 @@ void	check_up(char **map, int i, int start_j)
 			while (map[i][j + 1] != '\n')
 			{
 				if (map[i][j] != '1')
-					exit(ft_perror("invalid map\n"));	
+					exit(ft_perror("invalid map\n"));
 				j++;
 				if (map[i][j + 1] == '\n')
 					return ;
@@ -113,10 +105,8 @@ void (*operator)(int *i, char op), char op)
 	{
 		if (op == '+')
 			check_down(map, i, j);
-		while (map[i][j] == ' ')
-			j++;
-		while (map[i][j] == '1')
-			j++;
+		while_char(map[i], ' ', &j);
+		while_char(map[i], '1', &j);
 		if (op == '-')
 			check_up(map, i, j);
 		if (map[i][j] == '\n' || map[i][j] == '\0')

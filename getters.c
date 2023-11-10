@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:21 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/29 13:30:23 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:44:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_color	get_color(char *line)
 	color.b = ft_atoi(line + i);
 	while (ft_isdigit(line[i]) || line[i] == ' ' || line[i] == '\t')
 		i++;
-	if (line[i] != '\n' && ft_isascii(line[i]))
+	if (line[i] != '\n' && ft_isascii(line[i]) && line[i] != '\0')
 		exit(ft_perror("invalid color\n"));
 	return (color);
 }

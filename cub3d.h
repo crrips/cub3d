@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/08 10:34:57 by user             ###   ########.fr       */
+/*   Updated: 2023/11/10 19:51:21 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include "libft.h"
+# include "mlx.h"
 
 typedef struct s_texture
 {
@@ -53,6 +54,19 @@ typedef struct s_exist
 	int	is_c;
 }	t_exist;
 
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	char	orientation;
+}	t_player;
+
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_mlx;
+
 typedef struct s_game
 {
 	t_texture		tex;
@@ -60,6 +74,8 @@ typedef struct s_game
 	t_color			ceiling;
 	t_map			map;
 	t_exist			exist;
+	t_player		player;
+	t_mlx			mlx;
 }	t_game;
 
 // PARSING
@@ -86,10 +102,13 @@ int		set_mapsize(t_game *game, char *line);
 void	check_format(char *to_check, char f1, char f2, char f3);
 int		check_exist(t_game *game);
 void	check_all_numbers(t_color f, t_color c);
+int		strlen2d(char **map);
+void	while_char(char *line, char skip, int *i);
 
 // CREATE
 void	create_map(char *filename, t_game **game);
 void	create_config(char *filename, t_game **game);
+void	start(t_game **game);
 
 // MAP UTILS
 void	check_no_wall(char **map, int pos,
@@ -98,8 +117,13 @@ void	check_wall_last(char *line);
 void	identify_char(char **line, int *i, int *c, t_game **game);
 void	after_map(char *line, char **map);
 void	check_map(t_game **game);
+void	check_inside(t_game **game, char **map, int size);	
 
 // MATH
 void	operator(int *i, char op);
+
+// MLX UTILS
+int		kill_process(void);
+int		key_management(int keycode, t_game **game);
 
 #endif

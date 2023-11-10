@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/09 13:20:56 by user             ###   ########.fr       */
+/*   Updated: 2023/11/10 13:43:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	print_data(t_game **game)
 	printf("ceiling color\n");
 	printf("%d %d %d\n", (*game)->ceiling.r, (*game)->ceiling.g, (*game)->ceiling.b);
 	printf("map %d\n", (*game)->map.size);
+	printf("player %d %d %c\n", (*game)->player.x, (*game)->player.y, (*game)->player.orientation);
 	print2d((*game)->map.map);
 }

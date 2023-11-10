@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:43:29 by user              #+#    #+#             */
-/*   Updated: 2023/11/08 10:36:45 by user             ###   ########.fr       */
+/*   Updated: 2023/11/10 19:04:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	check_map(t_game **game)
 {
 	check_no_wall((*game)->map.map, 0, operator, '+');
 	check_no_wall((*game)->map.map, (*game)->map.size - 1, operator, '-');
+	check_inside(game, (*game)->map.map, (*game)->map.size);
 }
