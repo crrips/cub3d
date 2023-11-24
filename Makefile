@@ -2,15 +2,18 @@ NAME	=	cub3D
 
 SRC		=	main.c parsing.c print.c getters.c setters.c pars_utils.c\
 			config.c map.c map_utils.c map_check_utils.c map_inside.c\
-			start.c mlx_utils.c\
-			get_next_line.c get_next_line_utils.c
+			start.c mlx_utils.c draw.c init.c raycasting.c textures.c\
+			moving.c get_next_line.c get_next_line_utils.c
 	
 OBJ_DIR	=	obj
 OBJ		= 	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-FLAGS	=	-Wall -Werror -Wextra -g
+FLAGS	=	-Wall -Werror -Wextra
 
-LINKERS = -L /usr/local/lib -Lmlx -lmlx -framework OpenGL -framework AppKit
+LIBFT 	= 	./libft/libft.a
+MLX 	= 	./mlx/libmlx.a
+
+LINKERS = 	-L /usr/local/lib -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 INC		=	-I libft -I mlx
 
@@ -28,11 +31,15 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@cc $(FLAGS) $(INC) $(OBJ) libft/libft.a -o $@ $(LINKERS)
+	@make -sC ./mlx
+	@make -sC ./libft
+	@cc $(FLAGS) $(INC) $(OBJ) $(LIBFT) -o $@ $(LINKERS)
 	@echo "$(GREEN)Executable file $(NAME) was compiled!$(END)"
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@make -sC ./mlx clean
+	@make -sC ./libft fclean
 	@echo "$(YELLOW)Object files were deleted!$(END)"
 	
 fclean: clean

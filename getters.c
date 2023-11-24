@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:21 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/10 14:44:04 by user             ###   ########.fr       */
+/*   Updated: 2023/11/18 16:46:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,16 @@ char	*get_texture(char *line)
 {
 	char	*tex;
 	int		i;
+	int		fd;
 
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	tex = ft_strtrim(line + i, " \n");
+	fd = open(tex, O_RDONLY);
+	if (fd < 0)
+		exit(ft_perror("invalid texture path\n"));
+	close(fd);
 	check_format(tex, 'x', 'p', 'm');
 	return (tex);
 }

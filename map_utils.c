@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:44:58 by user              #+#    #+#             */
-/*   Updated: 2023/11/08 11:17:49 by user             ###   ########.fr       */
+/*   Updated: 2023/11/24 14:35:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	identify_char(char **line, int *i, int *c, t_game **game)
 		free(*line);
 	else if ((*line)[j] == '1')
 	{
+		if (*i == 0)
+			free((*game)->map.map[(*i)]);
 		(*game)->map.map[(*i)++] = *line;
 		check_wall_last(*line);
 	}
@@ -55,6 +57,8 @@ void	after_map(char *line, char **map)
 {
 	static char	*save_line;
 
+	if (!map)
+		return ;
 	if (*map && **map)
 	{
 		while (*line == ' ')

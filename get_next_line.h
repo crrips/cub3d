@@ -23,9 +23,9 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
-char	*ft_strdup(char *src);
-char	*ft_strcpy(char *dest, char *src);
-char	*ft_strlcpy(char *dest, char *src, size_t size, int flag);
-size_t	ft_strlen(const char *str, int flag);
+char	*ft_strdup_gnl(char *src);
+char	*ft_strcpy_gnl(char *dest, char *src);
+char	*ft_strlcpy_gnl(char *dest, char *src, size_t size, int flag);
+size_t	ft_strlen_gnl(const char *str, int flag);
 
 #endif

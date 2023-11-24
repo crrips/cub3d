@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:52:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/10 19:51:21 by user             ###   ########.fr       */
+/*   Updated: 2023/11/24 16:20:15 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
+# include <math.h>
 # include "libft.h"
 # include "mlx.h"
+
+# define W 1080
+# define H 800
 
 typedef struct s_texture
 {
@@ -61,21 +65,64 @@ typedef struct s_player
 	char	orientation;
 }	t_player;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*img_addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_img	bg;
 }	t_mlx;
 
 typedef struct s_game
 {
-	t_texture		tex;
-	t_color			floor;
-	t_color			ceiling;
-	t_map			map;
-	t_exist			exist;
-	t_player		player;
-	t_mlx			mlx;
+	t_texture	path_tex;
+	t_color		floor;
+	t_color		ceiling;
+	t_map		map;
+	t_exist		exist;
+	t_player	player;
+	t_mlx		mlx;
+	t_img		tex[4];
+	int			size;
+	int			x_map;
+	int			y_map;
+	int			hit;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			tex_x;
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			l;
+	int			r;
+	double		x_pos;
+	double		y_pos;
+	double		x_dir;
+	double		y_dir;
+	double		x_plane;
+	double		y_plane;
+	double		x_dir_ray;
+	double		y_dir_ray;
+	double		move_speed;
+	double		rot_speed;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
 }	t_game;
 
 // PARSING
@@ -107,8 +154,8 @@ void	while_char(char *line, char skip, int *i);
 
 // CREATE
 void	create_map(char *filename, t_game **game);
-void	create_config(char *filename, t_game **game);
-void	start(t_game **game);
+void	create_config(char *filename, t_game **game, int fd);
+void	start(t_game *game);
 
 // MAP UTILS
 void	check_no_wall(char **map, int pos,
@@ -122,8 +169,13 @@ void	check_inside(t_game **game, char **map, int size);
 // MATH
 void	operator(int *i, char op);
 
-// MLX UTILS
-int		kill_process(void);
-int		key_management(int keycode, t_game **game);
+// DRAW
+int		draw(t_game *game);
+
+// INIT
+void	init(t_game *game);
+
+// RAYCASTING
+void	raycating(t_game *game);
 
 #endif

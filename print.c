@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/10 13:43:03 by user             ###   ########.fr       */
+/*   Updated: 2023/11/24 03:09:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,20 @@ void	print2d(char **map)
 void	print_data(t_game **game)
 {
 	printf("north texture\n");
-	printf("%s\n", (*game)->tex.no);
+	printf("%s\n", (*game)->path_tex.no);
 	printf("south texture\n");
-	printf("%s\n", (*game)->tex.so);
+	printf("%s\n", (*game)->path_tex.so);
 	printf("west texture\n");
-	printf("%s\n", (*game)->tex.we);
+	printf("%s\n", (*game)->path_tex.we);
 	printf("east texture\n");
-	printf("%s\n", (*game)->tex.ea);
+	printf("%s\n", (*game)->path_tex.ea);
 	printf("floor color\n");
 	printf("%d %d %d\n", (*game)->floor.r, (*game)->floor.g, (*game)->floor.b);
 	printf("ceiling color\n");
-	printf("%d %d %d\n", (*game)->ceiling.r, (*game)->ceiling.g, (*game)->ceiling.b);
+	printf("%d %d %d\n", (*game)->ceiling.r, (*game)->ceiling.g,
+		(*game)->ceiling.b);
 	printf("map %d\n", (*game)->map.size);
-	printf("player %d %d %c\n", (*game)->player.x, (*game)->player.y, (*game)->player.orientation);
+	printf("player %d %d %c\n", (*game)->player.y, (*game)->player.x,
+		(*game)->player.orientation);
 	print2d((*game)->map.map);
 }

@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strcpy_gnl(char *dest, char *src)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strlcpy(char *dest, char *src, size_t size, int flag)
+char	*ft_strlcpy_gnl(char *dest, char *src, size_t size, int flag)
 {
 	unsigned int	i;
 
@@ -45,13 +45,24 @@ char	*ft_strlcpy(char *dest, char *src, size_t size, int flag)
 	return (dest);
 }
 
-char	*ft_strdup(char *src)
+size_t	ft_strlen_gnl(const char *str, int flag)
+{
+	size_t	i;
+
+	(void)flag;
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strdup_gnl(char *src)
 {
 	char	*str;
 
-	str = malloc(ft_strlen(src, 0) * sizeof(char) + 1);
+	str = malloc(ft_strlen_gnl(src, 0) * sizeof(char) + 1);
 	if (!str)
 		return (0);
-	ft_strcpy(str, src);
+	ft_strcpy_gnl(str, src);
 	return (str);
 }

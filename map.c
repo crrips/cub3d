@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:43:29 by user              #+#    #+#             */
-/*   Updated: 2023/11/10 19:04:03 by user             ###   ########.fr       */
+/*   Updated: 2023/11/24 14:32:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	create_map(char *filename, t_game **game)
 	if ((*game)->map.size < 3)
 		exit(ft_perror("invalid map\n"));
 	(*game)->map.map = malloc(((*game)->map.size + 1) * sizeof(char *));
+	*(*game)->map.map = ft_strdup("");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		exit(ft_perror("invalid file\n"));
