@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:44:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/25 10:28:12 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:44:57 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_obrez(char *line, char *pre, char *after)
 		}
 		if (line[i] != '1' && (prelen < i || aftlen < i
 				|| pre[i] == ' ' || after[i] == ' '))
-			exit(ft_perror("invalid map aaaa\n"));
+			exit(ft_perror("invalid map\n"));
 		i++;
 	}
 }
@@ -112,7 +112,7 @@ void (*operator)(int *i, char op), char op)
 			break ;
 		while (map[i][j] == ' ')
 			operator(&i, op);
-		if (map[i][j] != '1')
+		if (map[i][j] != '1' && map[i][j] != '\n')
 			exit(ft_perror("invalid map\n"));
 		else
 		{
