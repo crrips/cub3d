@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_inside.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 13:26:05 by user              #+#    #+#             */
-/*   Updated: 2023/11/23 00:40:11 by user             ###   ########.fr       */
+/*   Created: 2023/11/10 13:26:05 by apiloian          #+#    #+#             */
+/*   Updated: 2023/11/25 09:15:02 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	check_symb(char **map, int i, int j)
 		{
 			if (!ft_strchr("01NSEW ", map[i][j]))
 				if (map[i][j] != '\n')
-					exit(ft_perror("invalid maps\n"));
+					exit(ft_perror("invalid map\n"));
 			j++;
 		}
 		i++;

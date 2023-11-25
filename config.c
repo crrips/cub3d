@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 19:42:24 by user              #+#    #+#             */
-/*   Updated: 2023/11/24 14:42:48 by user             ###   ########.fr       */
+/*   Created: 2023/11/04 19:42:24 by apiloian          #+#    #+#             */
+/*   Updated: 2023/11/25 11:27:38 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ void	init_exist(t_game **game)
 	(*game)->exist.is_c = 0;
 }
 
+void	set_all(t_game **game, char *line)
+{
+	set_texture(line, "NO", &(*game)->path_tex.no, &(*game)->exist.is_no);
+	set_texture(line, "SO", &(*game)->path_tex.so, &(*game)->exist.is_so);
+	set_texture(line, "WE", &(*game)->path_tex.we, &(*game)->exist.is_we);
+	set_texture(line, "EA", &(*game)->path_tex.ea, &(*game)->exist.is_ea);
+	set_color(line, "F", &(*game)->floor, &(*game)->exist.is_f);
+	set_color(line, "C", &(*game)->ceiling, &(*game)->exist.is_c);
+	(*game)->map.size = set_mapsize(*game, line);
+}
+
 void	create_config(char *filename, t_game **game, int fd)
 {
 	char	*line;
@@ -52,18 +63,13 @@ void	create_config(char *filename, t_game **game, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		set_texture(line, "NO", &(*game)->path_tex.no, &(*game)->exist.is_no);
-		set_texture(line, "SO", &(*game)->path_tex.so, &(*game)->exist.is_so);
-		set_texture(line, "WE", &(*game)->path_tex.we, &(*game)->exist.is_we);
-		set_texture(line, "EA", &(*game)->path_tex.ea, &(*game)->exist.is_ea);
-		set_color(line, "F", &(*game)->floor, &(*game)->exist.is_f);
-		set_color(line, "C", &(*game)->ceiling, &(*game)->exist.is_c);
-		(*game)->map.size = set_mapsize(*game, line);
+		if (!ft_strchr("NSWEFC1 \t\n", *line))
+			exit(ft_perror("invalid config\n"));
+		set_all(game, line);
 		free(line);
 	}
 	if (!check_exist(*game))
 		exit(ft_perror("invalid config\n"));
 	check_all_numbers((*game)->floor, (*game)->ceiling);
-	free(line);
 	close(fd);
 }

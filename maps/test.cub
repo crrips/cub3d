@@ -1,7 +1,7 @@
 NO	./images/north.xpm
-SO	./images/south.xpm
+SO	./images/wall.xpm
 WE	./images/west.xpm
-EA	./images/east.xpm
+EA	./images/gold.xpm
 
 F	0,42,0
 C	59,89,189

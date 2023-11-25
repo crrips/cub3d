@@ -8,7 +8,7 @@ SRC		=	main.c parsing.c print.c getters.c setters.c pars_utils.c\
 OBJ_DIR	=	obj
 OBJ		= 	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-FLAGS	=	-Wall -Werror -Wextra
+FLAGS	=	-Wall -Werror -Wextra -g
 
 LIBFT 	= 	./libft/libft.a
 MLX 	= 	./mlx/libmlx.a

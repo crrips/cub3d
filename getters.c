@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:30:21 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/18 16:46:36 by user             ###   ########.fr       */
+/*   Updated: 2023/11/25 11:18:53 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void	skip_symb(char *line, int *i)
 		(*i)++;
 	while (line[*i] == ' ' || line[*i] == '\t')
 		(*i)++;
+}
+
+void	check_illegal_color(char *line, int i)
+{
+	while (line[i] != ',' && line[i] != '\n')
+	{
+		if (!ft_isdigit(line[i]) && line[i] != ' ' && line[i] != '\t'
+			&& line[i] != '\n' && line[i] != ',')
+			exit(ft_perror("invalid color\n"));
+		i++;
+	}
 }
 
 void	skip_comma(char *line, int *i)
@@ -34,6 +45,7 @@ void	skip_comma(char *line, int *i)
 		if (line[*i] != ' ' && line[*i] != '\t' && !ft_isdigit(line[*i]))
 			exit(ft_perror("invalid color\n"));
 	}
+	check_illegal_color(line, *i);
 }
 
 char	*get_texture(char *line)
@@ -62,6 +74,7 @@ t_color	get_color(char *line)
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
+	check_illegal_color(line, i);
 	if (ft_isdigit(line[i]))
 		color.r = ft_atoi(line + i);
 	else

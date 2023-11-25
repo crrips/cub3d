@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 13:43:40 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/08 11:17:28 by user             ###   ########.fr       */
+/*   Updated: 2023/11/25 11:27:00 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 void	set_texture(char *line, char *txt, char **to_set, int *to_increment)
 {
+	if (line[0] == txt[0])
+		(*to_increment)++;
 	if (line[0] == txt[0] && line[1] == txt[1]
 		&& (line[2] == ' ' || line[2] == '\t'))
 	{
 		*to_set = get_texture(line + 2);
-		(*to_increment)++;
 	}
 }
 
 void	set_color(char *line, char *txt, t_color *to_set, int *to_increment)
 {
+	if (line[0] == txt[0])
+		(*to_increment)++;
 	if (line[0] == txt[0]
 		&& (line[1] == ' ' || line[1] == '\t'))
 	{
 		*to_set = get_color(line + 1);
-		(*to_increment)++;
 	}
 }
 
