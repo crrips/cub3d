@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 04:17:34 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/25 08:57:16 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:41:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate(t_game *game, double old_x_dir, double old_x_plane)
 {
 	old_x_dir = game->x_dir;
 	old_x_plane = game->x_plane;
-	if (game->l)
+	if (game->l && !game->r)
 	{
 		game->x_dir = game->x_dir * cos(game->rot_speed)
 			- game->y_dir * sin(game->rot_speed);
@@ -27,7 +27,7 @@ void	rotate(t_game *game, double old_x_dir, double old_x_plane)
 		game->y_plane = old_x_plane * sin(game->rot_speed)
 			+ game->y_plane * cos(game->rot_speed);
 	}
-	if (game->r)
+	if (game->r && !game->l)
 	{
 		game->x_dir = game->x_dir * cos(-game->rot_speed)
 			- game->y_dir * sin(-game->rot_speed);
