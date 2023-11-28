@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:44:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/25 12:44:57 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:10:19 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_obrez(char *line, char *pre, char *after)
 			i++;
 			continue ;
 		}
-		if (line[i] != '1' && (prelen < i || aftlen < i
+		if (line[i] != '1' && (prelen <= i || aftlen <= i
 				|| pre[i] == ' ' || after[i] == ' '))
 			exit(ft_perror("invalid map\n"));
 		i++;
