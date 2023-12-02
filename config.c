@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:42:24 by apiloian          #+#    #+#             */
-/*   Updated: 2023/11/25 11:27:38 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/12/02 18:49:21 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	create_config(char *filename, t_game **game, int fd)
 	if (fd == -1)
 		exit(ft_perror("invalid file\n"));
 	init_exist(game);
+	(*game)->floor.r = -1;
+	(*game)->ceiling.r = -1;
 	while (1)
 	{
 		line = get_next_line(fd);
